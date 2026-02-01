@@ -1,0 +1,321 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 20% 6%;
+    --foreground: 60 10% 95%;
+
+    --card: 220 18% 10%;
+    --card-foreground: 60 10% 95%;
+
+    --popover: 220 18% 10%;
+    --popover-foreground: 60 10% 95%;
+
+    --primary: 165 80% 50%;
+    --primary-foreground: 220 20% 6%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 60 10% 95%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 340 85% 65%;
+    --accent-foreground: 60 10% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 20%;
+    --ring: 165 80% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(165, 80%, 50%) 0%, hsl(200, 80%, 55%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(340, 85%, 65%) 0%, hsl(20, 90%, 60%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(220, 20%, 6%) 0%, hsl(220, 18%, 10%) 100%);
+    --shadow-glow: 0 0 60px -15px hsl(165, 80%, 50% / 0.4);
+    --shadow-card: 0 25px 50px -12px hsl(0, 0%, 0% / 0.5);
+
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --sidebar-background: 220 18% 10%;
+    --sidebar-foreground: 60 10% 95%;
+    --sidebar-primary: 165 80% 50%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 15%;
+    --sidebar-accent-foreground: 60 10% 95%;
+    --sidebar-border: 220 15% 20%;
+    --sidebar-ring: 165 80% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-accent);
+  }
+
+  .circle-pattern {
+    @apply relative;
+  }
+
+  .circle-pattern::before {
+    content: '';
+    @apply absolute inset-0 rounded-full;
+    background: conic-gradient(from 0deg, hsl(165, 80%, 50%), hsl(200, 80%, 55%), hsl(340, 85%, 65%), hsl(165, 80%, 50%));
+    animation: rotate 8s linear infinite;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border border-border;
+    background: hsl(220, 18%, 10% / 0.8);
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+
+  .hover-lift:hover {
+    @apply -translate-y-2;
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@layer utilities {
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      transform: scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes letter-bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes letter-glow {
+    0%, 100% {
+      text-shadow: 0 0 5px currentColor;
+    }
+    50% {
+      text-shadow: 0 0 20px currentColor, 0 0 30px currentColor;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 0.6;
+      transform: scale(1);
+      filter: drop-shadow(0 0 5px currentColor);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 15px currentColor);
+    }
+  }
+
+  @keyframes energy-flow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scaleY(0.5);
+    }
+    50% {
+      opacity: 0.8;
+      transform: scaleY(1.5);
+    }
+  }
+
+  @keyframes float-gem {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 0.6;
+    }
+    25% {
+      transform: translateY(-8px) rotate(90deg);
+      opacity: 0.8;
+    }
+    50% {
+      transform: translateY(-4px) rotate(180deg);
+      opacity: 1;
+    }
+    75% {
+      transform: translateY(-8px) rotate(270deg);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes wave-expand {
+    0% {
+      transform: scale(0.8);
+      opacity: 0.8;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.4;
+    }
+    100% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-ring {
+    animation: pulse-ring 2s ease-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+
+  .animate-fade-up-delay-1 {
+    animation: fade-up 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-2 {
+    animation: fade-up 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-3 {
+    animation: fade-up 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-letter-bounce {
+    animation: letter-bounce 2s ease-in-out infinite;
+  }
+
+  .animate-letter-glow {
+    animation: letter-glow 3s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  .animate-energy-flow {
+    animation: energy-flow 3s ease-in-out infinite;
+  }
+
+  .animate-float-gem {
+    animation: float-gem 4s ease-in-out infinite;
+  }
+
+  .animate-wave-expand {
+    animation: wave-expand 3s ease-out infinite;
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin-reverse {
+    from {
+      transform: rotate(360deg);
+    }
+    to {
+      transform: rotate(0deg);
+    }
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 20s linear infinite;
+  }
+
+  .animate-spin-reverse {
+    animation: spin-reverse 15s linear infinite;
+  }
+}
