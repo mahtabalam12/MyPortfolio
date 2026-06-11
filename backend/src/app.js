@@ -2,7 +2,11 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import dns from "node:dns";
 import contactRoutes from "./routes/contact.js";
+
+// Override DNS servers to bypass Windows adapter/ISP DNS resolution issues with Atlas SRV records
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 // Load environment variables
 dotenv.config();
