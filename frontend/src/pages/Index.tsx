@@ -1011,7 +1011,7 @@ const Index = () => {
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-muted-foreground text-sm">
-              ┬⌐ 2026 Md Mahtab Alam. All rights reserved.
+              &copy; 2026 Md Mahtab Alam. All rights reserved.
             </p>
             <div className="flex gap-4">
               {socialLinks.map((social) => (
