@@ -1,4 +1,4 @@
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Folder } from "lucide-react";
 
 interface ProjectCardProps {
   title: string;
@@ -10,6 +10,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ title, description, image, tags, liveUrl, githubUrl }: ProjectCardProps) => {
+  const isDrive = liveUrl?.includes("drive.google.com");
+
   return (
     <div className="glass-card rounded-2xl overflow-hidden hover-lift group">
       <div className="relative h-48 overflow-hidden">
@@ -27,9 +29,10 @@ const ProjectCard = ({ title, description, image, tags, liveUrl, githubUrl }: Pr
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              title={isDrive ? "Google Drive Folder" : "Live Demo"}
               className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground hover:scale-110 transition-transform"
             >
-              <ExternalLink className="w-5 h-5" />
+              {isDrive ? <Folder className="w-5 h-5" /> : <ExternalLink className="w-5 h-5" />}
             </a>
           )}
           {githubUrl && (

@@ -15,7 +15,6 @@ const Navbar = () => {
 
   const navLinks = [
     { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Contact", href: "#contact" },
@@ -28,8 +27,11 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="font-display text-2xl font-bold text-gradient">
-          MA
+        <a
+          href="#home"
+          className="font-display text-2xl font-bold text-white hover:text-primary transition-colors"
+        >
+          Portfolio.
         </a>
 
         {/* Desktop Navigation */}
@@ -56,7 +58,11 @@ const Navbar = () => {
           className="md:hidden text-foreground"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
         </button>
       </div>
 

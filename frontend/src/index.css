@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 220 20% 6%;
+    --background: 220 18% 15%;
     --foreground: 60 10% 95%;
 
     --card: 220 18% 10%;
@@ -15,7 +15,7 @@
     --popover: 220 18% 10%;
     --popover-foreground: 60 10% 95%;
 
-    --primary: 165 80% 50%;
+    --primary: 190 90% 50%;
     --primary-foreground: 220 20% 6%;
 
     --secondary: 220 15% 15%;
@@ -24,7 +24,7 @@
     --muted: 220 15% 18%;
     --muted-foreground: 220 10% 55%;
 
-    --accent: 340 85% 65%;
+    --accent: 190 90% 50%;
     --accent-foreground: 60 10% 95%;
 
     --destructive: 0 84.2% 60.2%;
@@ -32,15 +32,15 @@
 
     --border: 220 15% 20%;
     --input: 220 15% 20%;
-    --ring: 165 80% 50%;
+    --ring: 190 90% 50%;
 
     --radius: 0.75rem;
 
     /* Custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(165, 80%, 50%) 0%, hsl(200, 80%, 55%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(340, 85%, 65%) 0%, hsl(20, 90%, 60%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(220, 20%, 6%) 0%, hsl(220, 18%, 10%) 100%);
-    --shadow-glow: 0 0 60px -15px hsl(165, 80%, 50% / 0.4);
+    --gradient-primary: linear-gradient(135deg, hsl(190, 90%, 50%) 0%, hsl(215, 95%, 50%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(190, 90%, 50%) 0%, hsl(215, 95%, 50%) 100%);
+    --gradient-dark: linear-gradient(180deg, hsl(220, 20% , 6%) 0%, hsl(220, 18%, 10%) 100%);
+    --shadow-glow: 0 0 40px -10px hsl(190, 90%, 50% / 0.5);
     --shadow-card: 0 25px 50px -12px hsl(0, 0%, 0% / 0.5);
 
     --font-display: 'Space Grotesk', sans-serif;
@@ -90,7 +90,7 @@
   .circle-pattern::before {
     content: '';
     @apply absolute inset-0 rounded-full;
-    background: conic-gradient(from 0deg, hsl(165, 80%, 50%), hsl(200, 80%, 55%), hsl(340, 85%, 65%), hsl(165, 80%, 50%));
+    background: conic-gradient(from 0deg, hsl(190, 90%, 50%), hsl(215, 95%, 50%), hsl(190, 90%, 50%));
     animation: rotate 8s linear infinite;
   }
 
@@ -262,6 +262,21 @@
 
   .animate-fade-up-delay-3 {
     animation: fade-up 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-4 {
+    animation: fade-up 0.8s ease-out 0.8s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-5 {
+    animation: fade-up 0.8s ease-out 1.0s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-up-delay-6 {
+    animation: fade-up 0.8s ease-out 1.2s forwards;
     opacity: 0;
   }
 
