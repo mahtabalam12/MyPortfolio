@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { toast } from "sonner";
 import { Github, Linkedin, Mail, ArrowDown, Send, Phone, Cpu, Radio, Wifi, Zap, CircuitBoard, Smartphone, Download, Building2, Calendar, Award, GraduationCap, School, Code, Database, Globe, Server, Monitor, Layers, Microchip } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import CirclePhoto from "@/components/CirclePhoto";
@@ -10,6 +12,58 @@ import project2 from "@/assets/project-2.jpg";
 import project5 from "@/assets/project-5.jpg";
 
 const Index = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        toast.success(data.message || "Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: ""
+        });
+      } else {
+        toast.error(data.error || "Failed to send message.");
+      }
+    } catch (err) {
+      console.error("Error submitting contact form:", err);
+      toast.error("Could not connect to the server. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const softwareSkills = [
     { icon: Code, name: "Java Programming", level: 90, color: "from-orange-500 to-red-500" },
     { icon: Layers, name: "DSA", level: 85, color: "from-blue-500 to-cyan-500" },
@@ -886,15 +940,18 @@ const Index = () => {
               </p>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">Name</label>
                   <input
                     type="text"
                     id="name"
+                    value={formData.name}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground transition-colors"
                     placeholder="Your name"
+                    required
                   />
                 </div>
                 <div>
@@ -902,8 +959,11 @@ const Index = () => {
                   <input
                     type="email"
                     id="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground transition-colors"
                     placeholder="your@email.com"
+                    required
                   />
                 </div>
               </div>
@@ -914,6 +974,8 @@ const Index = () => {
                   <input
                     type="tel"
                     id="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
                     className="w-full pl-12 pr-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground transition-colors"
                     placeholder="+91 0123456789"
                   />
@@ -924,15 +986,19 @@ const Index = () => {
                 <textarea
                   id="message"
                   rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-xl bg-secondary border border-border focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary text-foreground placeholder:text-muted-foreground resize-none transition-colors"
                   placeholder="Tell me about your project..."
+                  required
                 />
               </div>
               <button
                 type="submit"
-                className="w-full px-8 py-4 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 rounded-xl bg-primary text-primary-foreground font-medium hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center justify-center gap-2"
               >
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
                 <Send className="w-4 h-4" />
               </button>
             </form>
