@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
 
 // Database connection & Server startup
 const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI = process.env.MONGO_URI || "mongodb+srv://alammahtabph_db_user:portfolio123@cluster0.evhnu8v.mongodb.net/?appName=PortfolioCluster0";
 
 if (!MONGO_URI) {
   console.error("FATAL ERROR: MONGO_URI is not defined in environment variables.");
