@@ -299,7 +299,7 @@ const Index = () => {
                   <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
                     Hardware Skills
                   </h3>
-                  <p className="text-muted-foreground text-xs">Electronics & Embedded Systems</p>
+                  <p className="text-muted-foreground text-xs">Electronics & Communication</p>
                 </div>
               </div>
 
