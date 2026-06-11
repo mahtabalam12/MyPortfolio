@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, Mail, ArrowDown, Send, Phone, Cpu, Radio, Wifi, Zap, CircuitBoard, Smartphone, Download, Building2, Calendar, Award, GraduationCap, School, Code, Database, Globe, Server, Monitor, Layers, Microchip, Facebook, Instagram } from "lucide-react";
+import { Github, Linkedin, Mail, ArrowDown, Send, Phone, Cpu, Radio, Wifi, Zap, CircuitBoard, Smartphone, Download, Building2, Calendar, Award, GraduationCap, School, Code, Database, Globe, Server, Monitor, Layers, Microchip } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import CirclePhoto from "@/components/CirclePhoto";
 import SkillBar from "@/components/SkillBar";
@@ -56,9 +56,7 @@ const Index = () => {
   ];
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
+    { icon: Github, href: "https://github.com/mahtabalam12", label: "GitHub" },
     { icon: Linkedin, href: "https://www.linkedin.com/in/md-mahtab-alam-563a2a27a/", label: "LinkedIn" },
   ];
 
